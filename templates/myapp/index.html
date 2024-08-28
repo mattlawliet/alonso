@@ -94,7 +94,19 @@ http://www.tooplate.com/view/2086-multi-color
                                             {{section_title}} 1 descripción.
                                         </p>
                                     </div>
+                                    {% for image in images %}
                                     <div class="grid-item">
+                                        <figure class="effect-bubba">
+                                            <img src="{% static image %}" alt="Image" class="img-fluid tm-img">
+                                            <figcaption>
+                                                <h2 class="tm-figure-title">Image <span>{{ forloop.counter }}</span></h2>
+                                                <p class="tm-figure-description">Maecenas purus sem, lobortis id odio in sapien.</p>
+                                                <a href="{% static image %}">View more</a>
+                                            </figcaption>
+                                        </figure>
+                                    </div>
+                                    {% endfor %}
+                                    <!-- <div class="grid-item">
                                         <figure class="effect-bubba">
                                             <img src="{% static 'myapp/img/tm-img-01-tn.jpg' %}" alt="Image" class="img-fluid tm-img">
                                             <figcaption>
@@ -253,7 +265,8 @@ http://www.tooplate.com/view/2086-multi-color
                                                 <a href="{% static 'myapp/img/tm-img-16.jpg' %}">View more</a>
                                             </figcaption>           
                                         </figure>
-                                    </div>                                                                       
+                                    </div>                                                                        -->
+
                                 </div>                                 
                             </div>
                         </div>                                                    
