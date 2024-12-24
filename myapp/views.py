@@ -1,23 +1,81 @@
 import os
 from django.conf import settings
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+from .forms import ContactForm
+from .models import Contact
+
+def contact_view(request):
+    if request.method == 'POST':
+        print("Form submitted")
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            print("Form is valid")
+            contact_name = form.cleaned_data['contact_name']
+            contact_email = form.cleaned_data['contact_email']
+            contact_message = form.cleaned_data['contact_message']
+            # Process the data (save to DB or send email)
+            Contact.objects.create( contact_name=contact_name, contact_email=contact_email, contact_message=contact_message )
+            # return render(request, 'success.html')  # Redirect to a success page
+            return redirect("home")
+    else:
+        print("Form is not valid")
+        form = ContactForm()
+
+    return render(request, 'contact.html', {'form': form})
+
+
 
 # Create your views here.
 def home(request):
     # Define the folder containing images
-    img_folder = os.path.join(settings.STATIC_ROOT, 'myapp/img/')
+    img_folder = os.path.join(settings.BASE_DIR, 'static','myapp','img')
+    img_folder_fotos2 = os.path.join(settings.BASE_DIR, 'static','myapp','fotos2')
     
     # List to hold the image URLs
-    img_list = []
+    img_list_fA = []
+    img_list_fB = []
+    img_list_fC = []
+
+    img_list_Aa = []
+    img_list_Ab = []
+    img_list_Ba = []
+    img_list_Bb = []
+    img_list_Ca = []
+    img_list_Cb = []
 
     # Loop through the folder and get all image file paths
     for filename in os.listdir(img_folder):
-        if filename.endswith(('tn.jpg', 'tn.jpeg')):  # Filter image types
-            img_list.append(f'myapp/img/{filename}')
+        if (filename.endswith(('tn.jpg', 'tn.jpeg')) and filename.startswith("tm-img-0")):  # Filter image types
+            
+            img_list_Aa.append(f'myapp/img/{filename}')
+            img_list_Ab.append(f'myapp/img/{filename.replace("-tn", "")}')
+            img_list_Ca.append(f'myapp/img/{filename}')
+            img_list_Cb.append(f'myapp/img/{filename.replace("-tn", "")}')
+        elif (filename.endswith(('tn.jpg', 'tn.jpeg')) and filename.startswith("tm-img-1")):
+            img_list_Ba.append(f'myapp/img/{filename}')
+            img_list_Bb.append(f'myapp/img/{filename.replace("-tn", "")}')
+    
+    
+    # Loop through the folder and get all image file paths
+    for filename in os.listdir(img_folder_fotos2):
+        if (filename.endswith('.png') and filename.startswith("fotosA")):  # Filter image types
+            img_list_fA.append(f'myapp/fotos2/{filename}')
+        elif (filename.endswith('.png') and filename.startswith("fotosB")):  # Filter image types
+            img_list_fB.append(f'myapp/fotos2/{filename}')
+        elif (filename.endswith('.png') and filename.startswith("fotosC")):  # Filter image types
+            img_list_fC.append(f'myapp/fotos2/{filename}')
+            
+
+    # 'imagesA': zip(img_list_Aa, img_list_Ab),
+    # 'imagesB': zip(img_list_Ba, img_list_Bb),
+    # 'imagesC': zip(img_list_Ca, img_list_Cb),
 
     context = {
         'section_title' : 'Muebles tipo',
-        'images': img_list,
+        'imagesA': zip(img_list_fA, img_list_fA),
+        'imagesB': zip(img_list_fB, img_list_fB),
+        'imagesC': zip(img_list_fC, img_list_fC),
 
         'about_us_title' : 'Acerca de nosotros',
         'about_us' : 'Con más de 50 años de experiencia en el arte de la ebanistería, nuestra empresa ha sido pionera en la creación de muebles únicos y personalizados. Nos dedicamos a transformar espacios con piezas de alta calidad y diseño a medida, cuidando cada detalle para lograr la satisfacción de nuestros clientes.',

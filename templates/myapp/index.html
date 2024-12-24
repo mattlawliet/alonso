@@ -26,7 +26,7 @@ http://www.tooplate.com/view/2086-multi-color
     <!-- Hero slider style (https://codyhouse.co/gem/hero-slider/) -->
     <link rel="stylesheet" href="{% static 'myapp/css/magnific-popup.css' %}">                                 
     <!-- Magnific popup style (http://dimsemenov.com/plugins/magnific-popup/) -->
-    <link rel="stylesheet" href="{% static 'myapp/css/tooplate-style.css' %}? v=1.0">                                   
+    <link rel="stylesheet" href="{% static 'myapp/css/tooplate-style.css' %}? v=1.1">                                   
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
@@ -60,13 +60,13 @@ http://www.tooplate.com/view/2086-multi-color
                         <div class="collapse navbar-toggleable-md text-xs-center text-uppercase tm-navbar" id="tmNavbar">
                             <ul class="nav navbar-nav">
                                 <li class="nav-item active selected">
-                                    <a class="nav-link" href="#0" data-no="1">Tipo Uno<span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="#0" data-no="1">Tipo A<span class="sr-only">(current)</span></a>
                                 </li>                                
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#0" data-no="2">Tipo Dos</a>
+                                    <a class="nav-link" href="#0" data-no="2">Tipo B</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#0" data-no="3">Tipo Tres</a>
+                                    <a class="nav-link" href="#0" data-no="3">Tipo C</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#0" data-no="4">Nosotros</a>
@@ -91,19 +91,19 @@ http://www.tooplate.com/view/2086-multi-color
                                 <div class="tm-img-gallery gallery-one">
                                 <!-- Gallery One pop up connected with JS code below -->                                    
                                     <div class="tm-img-gallery-info-container">                                    
-                                        <h2 class="tm-text-title tm-gallery-title tm-white"><span class="tm-white">{{section_title}} 1</span></h2>
+                                        <h2 class="tm-text-title tm-gallery-title tm-white"><span class="tm-white">{{section_title}} A</span></h2>
                                         <p class="tm-text">
-                                            {{section_title}} 1 descripción.
+                                            <!--{{section_title}} 1 descripción.-->
                                         </p>
                                     </div>
-                                    {% for image in images %}
+                                    {% for imagea, imageb in imagesA %}
                                     <div class="grid-item">
                                         <figure class="effect-bubba">
-                                            <img src="{% static image %}" alt="Image" class="img-fluid tm-img">
+                                            <img src="{% static imagea %}" alt="Image" class="img-fluid tm-img">
                                             <figcaption>
-                                                <h2 class="tm-figure-title">Image <span>{{ forloop.counter }}</span></h2>
-                                                <p class="tm-figure-description">Maecenas purus sem, lobortis id odio in sapien.</p>
-                                                <a href="{% static image %}">View more</a>
+                                                <h2 class="tm-figure-title"><!--Image <span>{{ forloop.counter }}</span>--></h2>
+                                                <p class="tm-figure-description"><!--Description--></p>
+                                                <a href="{% static imageb %}">View more</a>
                                             </figcaption>
                                         </figure>
                                     </div>
@@ -284,11 +284,25 @@ http://www.tooplate.com/view/2086-multi-color
                                 <!-- Gallery Two pop up connected with JS code below -->
                                     
                                     <div class="tm-img-gallery-info-container">                                    
-                                        <h2 class="tm-text-title tm-gallery-title"><span class="tm-white">{{section_title}} 2</span></h2>
-                                        <p class="tm-text"><span class="tm-white">{{section_title}} 2 descripción.</span>
+                                        <h2 class="tm-text-title tm-gallery-title"><span class="tm-white">{{section_title}} B</span></h2>
+                                        <p class="tm-text"><span class="tm-white"><!--{{section_title}} B descripción.--></span>
                                         </p>
                                     </div>
+                                    <!--SECTION B-->
+                                    {% for imagea, imageb in imagesB %}
                                     <div class="grid-item">
+                                        <figure class="effect-bubba">
+                                            <img src="{% static imagea %}" alt="Image" class="img-fluid tm-img">
+                                            <figcaption>
+                                                <h2 class="tm-figure-title"><!--Image <span>{{ forloop.counter }}</span>--></h2>
+                                                <p class="tm-figure-description"><!--Description--></p>
+                                                <a href="{% static imageb %}">View more</a>
+                                            </figcaption>
+                                        </figure>
+                                    </div>
+                                    {% endfor %}
+
+                                    <!-- <div class="grid-item">
                                         <figure class="effect-bubba">
                                             <img src="{% static 'myapp/img/tm-img-12-tn.jpg' %}" alt="Image" class="img-fluid tm-img">
                                             <figcaption>
@@ -298,6 +312,7 @@ http://www.tooplate.com/view/2086-multi-color
                                             </figcaption>           
                                         </figure>
                                     </div>
+                                    
                                     <div class="grid-item">
                                         <figure class="effect-bubba">
                                             <img src="{% static 'myapp/img/tm-img-11-tn.jpg' %}" alt="Image" class="img-fluid tm-img">
@@ -407,7 +422,7 @@ http://www.tooplate.com/view/2086-multi-color
                                                 <a href="{% static 'myapp/img/tm-img-01.jpg' %}">View more</a>
                                             </figcaption>           
                                         </figure>
-                                    </div>  
+                                    </div>   -->
                                 </div>                                 
                             </div>
                         </div>                      
@@ -423,11 +438,24 @@ http://www.tooplate.com/view/2086-multi-color
                                 <!-- Gallery Two pop up connected with JS code below -->
                                     
                                     <div class="tm-img-gallery-info-container">                                    
-                                        <h2 class="tm-text-title tm-gallery-title"><span class="tm-white">{{section_title}} 3</span></h2>
-                                        <p class="tm-text"><span class="tm-white">{{section_title}} 3 descripción.</span>
+                                        <h2 class="tm-text-title tm-gallery-title"><span class="tm-white">{{section_title}} C</span></h2>
+                                        <p class="tm-text"><span class="tm-white"><!--{{section_title}} 3 descripción.--></span>
                                         </p>                                     
                                     </div>
+                                    <!--SECTION B-->
+                                    {% for imagea, imageb in imagesC %}
                                     <div class="grid-item">
+                                        <figure class="effect-bubba">
+                                            <img src="{% static imagea %}" alt="Image" class="img-fluid tm-img">
+                                            <figcaption>
+                                                <h2 class="tm-figure-title"><!--Image <span>{{ forloop.counter }}</span>--></h2>
+                                                <p class="tm-figure-description"><!--Description--></p>
+                                                <a href="{% static imageb %}">View more</a>
+                                            </figcaption>
+                                        </figure>
+                                    </div>
+                                    {% endfor %}
+                                    <!-- <div class="grid-item">
                                         <figure class="effect-bubba">
                                             <img src="{% static 'myapp/img/tm-img-01-tn.jpg' %}" alt="Image" class="img-fluid tm-img">
                                             <figcaption>
@@ -506,7 +534,7 @@ http://www.tooplate.com/view/2086-multi-color
                                                 <a href="{% static 'myapp/img/tm-img-14.jpg' %}">View more</a>
                                             </figcaption>           
                                         </figure>
-                                    </div>                                                                                                 
+                                    </div>                                                                                                  -->
                                 </div>                                 
                             </div> <!-- .tm-img-gallery-container -->
                         </div>         
@@ -579,14 +607,15 @@ http://www.tooplate.com/view/2086-multi-color
                                                 <p class="tm-text">{{contact}}</p>                                                
                                                 
                                                 <!-- contact form -->
-                                                <form action="{% url 'home' %}" method="post" class="tm-contact-form">
-
+                                                <form action="{% url 'contact' %}" method="post" id="myform" class="tm-contact-form">
+                                                    {% csrf_token %}
+                                                    {{ form.as_p }}
                                                     <div class="form-group">
                                                         <input type="text" id="contact_name" name="contact_name" class="form-control" placeholder="Nombre"  required/>
                                                     </div>
-                                        
+
                                                     <div class="form-group">                                                        
-                                                        <input type="email" id="contact_email" name="contact_email" class="form-control" placeholder="Correo elctrónico"  required/>
+                                                        <input type="email" id="contact_email" name="contact_email" class="form-control" placeholder="Correo electrónico"  required/>
                                                     </div>                                                        
                                                     
                                                     <div class="form-group">
@@ -622,9 +651,9 @@ http://www.tooplate.com/view/2086-multi-color
             
                 <div class="tm-social-icons-container text-xs-center">
                     <a href="#" class="tm-social-link"><i class="fa fa-facebook"></i></a>
-                    <a href="#" class="tm-social-link"><i class="fa fa-google-plus"></i></a>
+                    
                     <a href="#" class="tm-social-link"><i class="fa fa-twitter"></i></a>
-                    <a href="#" class="tm-social-link"><i class="fa fa-behance"></i></a>
+                    
                     <a href="#" class="tm-social-link"><i class="fa fa-linkedin"></i></a>
                 </div>
                 
@@ -785,9 +814,9 @@ http://www.tooplate.com/view/2086-multi-color
             var map = L.map('google-map').setView([6.249920145013619, -75.55603986699533], 14);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
+                 maxZoom: 19,
+                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+             }).addTo(map);
 
             L.marker([6.249920145013619, -75.55603986699533]).addTo(map)
                 .bindPopup('Ubicación de Alonso Ebanistería.')
@@ -796,6 +825,29 @@ http://www.tooplate.com/view/2086-multi-color
             // DOM is ready
             $(function() {                
                 //loadGoogleMap(); // Google Map
+                
+                // $('#myform').submit(function(event) {
+                //     event.preventDefault();
+                //     console.log("Hi")
+                //     $.ajax({
+                //         type: 'POST',
+                //         url: '/handle-form-submission/',  // Adjust URL
+                //         data: $(this).serialize(),
+                //         success: function(response) {
+                //             if (response.success) {
+                //                 // Handle successful submission 
+                //                 alert('Form submitted successfully!');
+                //             } else {
+                //                 // Handle errors 
+                //                 alert('Form submission failed: ' + response.errors);
+                //             }
+                //         },
+                //         error: function() {
+                //             alert('An error occurred. Please try again.');
+                //         }
+                //     });
+                // });
+            
             });
 
         </script>            
