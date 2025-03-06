@@ -3,3 +3,8 @@ alonsov/
 .env
 .vercel/
 requirements_prev.txt
+*.pyc
+__pycache__/
+db.sqlite3
+.env.local
+*.log

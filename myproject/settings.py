@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
-#import dj_database_url
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,7 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-n5ug@=zh^uv7q(1a!rhlr7&vz^gg5*pnd+((k2+!$3bwe@jw$p"
+#SECRET_KEY = "django-insecure-n5ug@=zh^uv7q(1a!rhlr7&vz^gg5*pnd+((k2+!$3bwe@jw$p"
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False  # Set to False for production
@@ -49,19 +50,18 @@ INSTALLED_APPS = [
 ]
 
 # Update DEBUG and ALLOWED_HOSTS for better error visibility
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = [
-    'alonso-ebanisteria.onrender.com',
-    'localhost',
-    '127.0.0.1',
-    '.now.sh'
-]
+# ALLOWED_HOSTS = [
+#     'alonso-ebanisteria.onrender.com',
+#     'localhost',
+#     '127.0.0.1',
+#     '.now.sh'
+# ]
 
 # Make sure CSRF settings are correct
 CSRF_TRUSTED_ORIGINS = [
-    'https://alonso-ebanisteria.onrender.com',
-    'https://*.vercel.app'
+    'https://alonso-ebanisteria.onrender.com'
 ]
 
 # Ensure MIDDLEWARE has the correct order
@@ -102,24 +102,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "myproject.wsgi.application"
 
-
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
 # Database configuration
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'alonso_db',
-        'USER': 'postgres',
-        'PASSWORD': '1!#looN21PV@YJI',  # Make sure this matches your PostgreSQL password
-        'HOST': '127.0.0.1',  # Changed from localhost to explicit IP
-        'PORT': '5432',
-        'CONN_MAX_AGE': 0,  # Disable persistent connections
-    }
+    'default': dj_database_url.config(
+        default='postgresql://postgres:1!#looN21PV@YJI@127.0.0.1:5432/alonso_db',
+        conn_max_age=600,
+    )
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -167,3 +156,6 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+if DEBUG:
+    INSTALLED_APPS += ["debug_toolbar"]
+    MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
