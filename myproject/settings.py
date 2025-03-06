@@ -27,7 +27,7 @@ SECRET_KEY = "django-insecure-n5ug@=zh^uv7q(1a!rhlr7&vz^gg5*pnd+((k2+!$3bwe@jw$p
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # Update ALLOWED_HOSTS
-ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
+ALLOWED_HOSTS = ['alonso-ebanisteria.onrender.com', 'localhost', '127.0.0.1']
 
 # Update DEBUG
 DEBUG = False
@@ -48,6 +48,23 @@ INSTALLED_APPS = [
     "myapp",
 ]
 
+# Update DEBUG and ALLOWED_HOSTS for better error visibility
+DEBUG = True
+
+ALLOWED_HOSTS = [
+    'alonso-ebanisteria.onrender.com',
+    'localhost',
+    '127.0.0.1',
+    '.now.sh'
+]
+
+# Make sure CSRF settings are correct
+CSRF_TRUSTED_ORIGINS = [
+    'https://alonso-ebanisteria.onrender.com',
+    'https://*.vercel.app'
+]
+
+# Ensure MIDDLEWARE has the correct order
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -91,9 +108,14 @@ WSGI_APPLICATION = "myproject.wsgi.application"
 
 # Database configuration
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'alonso_db',
+        'USER': 'postgres',
+        'PASSWORD': '1!#looN21PV@YJI',  # Make sure this matches your PostgreSQL password
+        'HOST': '127.0.0.1',  # Changed from localhost to explicit IP
+        'PORT': '5432',
+        'CONN_MAX_AGE': 0,  # Disable persistent connections
     }
 }
 
@@ -120,9 +142,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "es"  # Changed from en-us to es for Spanish
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "America/Bogota"  # Updated to Colombia timezone
 
 USE_I18N = True
 
