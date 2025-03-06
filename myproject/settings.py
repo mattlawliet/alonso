@@ -10,8 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
-from pathlib import Path, os
-import dj_database_url
+from pathlib import Path
+import os
+#import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,6 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-n5ug@=zh^uv7q(1a!rhlr7&vz^gg5*pnd+((k2+!$3bwe@jw$p"
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# Update ALLOWED_HOSTS
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
+
+# Update DEBUG
 DEBUG = False
 
 ALLOWED_HOSTS = [".vercel.app"]
@@ -84,12 +89,12 @@ WSGI_APPLICATION = "myproject.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# Database configuration
 DATABASES = {
-    "default": dj_database_url.config(default='sqlite:///db.sqlite3')
-    # "default": {
-    #     "ENGINE": "django.db.backends.sqlite3",
-    #     "NAME": BASE_DIR / "db.sqlite3",
-    # }
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
 }
 
 
