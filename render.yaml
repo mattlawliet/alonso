@@ -13,4 +13,19 @@ services:
         generateValue: true
       - key: DEBUG
         value: "False"
+      - key: PYTHON_VERSION
+        value: 3.11.0
+    plan: free
+    buildFilter:
+      paths:
+        - static/**
+        - templates/**
+        - myapp/**
+        - myproject/**
+        - requirements.txt
+        - build_files.sh
+        - manage.py
+
+databases:
+  - name: alonso_db
     plan: free
