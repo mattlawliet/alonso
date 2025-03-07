@@ -2,7 +2,7 @@ services:
   - type: web
     name: alonso-ebanisteria
     env: python
-    buildCommand: pip install -r requirements.txt
+    buildCommand: sh build_files.sh
     startCommand: gunicorn myproject.wsgi:application
     envVars:
       - key: DATABASE_URL
